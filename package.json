@@ -1,0 +1,33 @@
+{
+    "name": "desafio-silva",
+    "author": "Rafael Bordoni",
+    "main": "index.html",
+    "type": "module",
+    "scripts": {
+        "dev": "source ./.env && python -m http.server $PORT",
+        "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
+        "lint": "npx eslint .",
+        "format": "npx prettier . --write",
+        "build": "npx @tailwindcss/cli -o ./build/stylesheet.css --minify"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/eldskald/desafio-silva.git"
+    },
+    "bugs": {
+        "url": "https://github.com/eldskald/desafio-silva/issues"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.39.1",
+        "@tailwindcss/cli": "^4.1.17",
+        "eslint": "^9.39.1",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-jest": "^29.2.1",
+        "eslint-plugin-prettier": "^5.5.4",
+        "globals": "^16.5.0",
+        "jest": "^30.2.0",
+        "jest-environment-jsdom": "^30.2.0",
+        "prettier": "^3.7.4",
+        "tailwindcss": "^4.1.17"
+    }
+}
