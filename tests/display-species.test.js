@@ -1,12 +1,10 @@
 import { beforeEach, describe, expect, test } from "@jest/globals";
 import { initDom } from "./utils/init-dom.js";
-import setSpeciesList from "../src/components/species-container.js";
 import species from "./mocks/species.js";
 
 describe("hello world", () => {
     beforeEach(async () => {
         await initDom();
-        setSpeciesList(species);
     });
 
     test("should display data for each species correctly", () => {

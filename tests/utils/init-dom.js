@@ -1,4 +1,6 @@
 import fs from "fs";
+import { jest } from "@jest/globals";
+import species from "../mocks/species.js";
 
 export async function initDom() {
     // Load index.html and removes the first two and the last lines,
@@ -11,6 +13,14 @@ export async function initDom() {
 
     // Put it on the DOM
     document.documentElement.innerHTML = lines.join("\n");
+
+    // Mock the fetch function to return mocked data directly
+    window.fetch = jest.fn(() =>
+        Promise.resolve({
+            ok: true,
+            text: () => Promise.resolve(JSON.stringify(species)),
+        }),
+    );
 
     // Load the scripts. Keep in mind <script> tags don't work on JSDOM,
     // so we load scripts directly which works in the same way because
