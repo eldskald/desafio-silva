@@ -10,6 +10,7 @@ function setDeleteModal(data, updateFn) {
         "w-full flex flex-row justify-between mt-4 gap-4";
     modal.appendChild(buttonsContainer);
     const confirmBtn = document.createElement("button");
+    confirmBtn.id = "confirm-delete-btn";
     confirmBtn.className = `
         rounded-sm px-2 duration-100 ease-in-out hover:brightness-150 font-bold
         bg-teal-800 text-orange-300 focus:brightness-150 focus:outline-none
@@ -23,6 +24,7 @@ function setDeleteModal(data, updateFn) {
     };
     buttonsContainer.appendChild(confirmBtn);
     const cancelBtn = document.createElement("button");
+    cancelBtn.id = "cancel-delete-btn";
     cancelBtn.className = `
         rounded-sm px-2 duration-100 ease-in-out hover:brightness-150
         bg-teal-800 text-stone-300 focus:brightness-150 focus:outline-none
@@ -57,6 +59,7 @@ export function getSpeciesItem(data, updateFn) {
     `;
     deleteBtn.innerHTML = "Deletar";
     deleteBtn.onclick = () => setDeleteModal(data, updateFn);
+    deleteBtn.id = `species-${data.id}-delete-btn`;
     nameRow.appendChild(deleteBtn);
 
     // Scientific name

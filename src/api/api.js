@@ -1,6 +1,6 @@
 import { popupMessage } from "../utils/get-modal.js";
 
-export let db = [];
+let db = [];
 
 export async function getReq() {
     const res = await fetch("src/data/species.json");
@@ -13,6 +13,9 @@ export async function getReq() {
 }
 
 export async function deleteReq(id) {
-    await new Promise((r) => setTimeout(r, 10));
     db = db.filter((item) => item.id !== id);
+}
+
+export function getDb() {
+    return db;
 }

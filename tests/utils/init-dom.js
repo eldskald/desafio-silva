@@ -13,6 +13,14 @@ export async function initDom(failToFetch = false) {
     lines.shift();
     lines.shift();
 
+    // Jest has no support the dialog element yet, so we have to implement it
+    HTMLDialogElement.prototype.showModal = jest.fn(
+        () => (document.querySelector("dialog").hidden = false),
+    );
+    HTMLDialogElement.prototype.close = jest.fn(
+        () => (document.querySelector("dialog").hidden = true),
+    );
+
     // Put it on the DOM
     document.documentElement.innerHTML = lines.join("\n");
 
