@@ -1,5 +1,5 @@
-import setSpeciesList from "./components/species-container.js";
-import getData from "./api/get-data.js";
+import { updateSpeciesList } from "./components/species-container.js";
+import { getReq } from "./api/api.js";
 
-const species = await getData();
-setSpeciesList(species);
+await getReq();
+updateSpeciesList();

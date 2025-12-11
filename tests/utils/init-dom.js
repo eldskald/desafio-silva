@@ -4,7 +4,7 @@ import species from "../mocks/species.js";
 
 export let hasCalledFetch = false;
 
-export async function initDom() {
+export async function initDom(failToFetch = false) {
     // Load index.html and removes the first two and the last lines,
     // leaving only the head and body elements.
     const data = fs.readFileSync("./index.html", { encoding: "utf8" });
@@ -18,7 +18,7 @@ export async function initDom() {
 
     // Mock the fetch function to return mocked data directly
     window.fetch = jest.fn(() => {
-        hasCalledFetch = true;
+        hasCalledFetch = !failToFetch;
         return Promise.resolve({
             ok: true,
             text: () => Promise.resolve(JSON.stringify(species)),

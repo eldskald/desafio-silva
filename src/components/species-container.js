@@ -1,7 +1,10 @@
-import getSpeciesItem from "./species-item.js";
+import { getSpeciesItem } from "./species-item.js";
+import { db } from "../api/api.js";
 
-export default function setSpeciesList(data) {
+export function updateSpeciesList() {
     const container = document.getElementById("species-container");
     container.innerHTML = "";
-    data.forEach((species) => container.appendChild(getSpeciesItem(species)));
+    db.forEach((species) =>
+        container.appendChild(getSpeciesItem(species, updateSpeciesList)),
+    );
 }
