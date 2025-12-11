@@ -11,11 +11,7 @@ function setDeleteModal(data, updateFn) {
     modal.appendChild(buttonsContainer);
     const confirmBtn = document.createElement("button");
     confirmBtn.id = "confirm-delete-btn";
-    confirmBtn.className = `
-        rounded-sm px-2 duration-100 ease-in-out hover:brightness-150 font-bold
-        bg-teal-800 text-orange-300 focus:brightness-150 focus:outline-none
-        active:shadow-inner active:shadow-black active:scale-90
-    `;
+    confirmBtn.className = "font-bold text-orange-300";
     confirmBtn.innerHTML = "Deletar";
     confirmBtn.onclick = async () => {
         await deleteReq(data.id);
@@ -25,11 +21,6 @@ function setDeleteModal(data, updateFn) {
     buttonsContainer.appendChild(confirmBtn);
     const cancelBtn = document.createElement("button");
     cancelBtn.id = "cancel-delete-btn";
-    cancelBtn.className = `
-        rounded-sm px-2 duration-100 ease-in-out hover:brightness-150
-        bg-teal-800 text-stone-300 focus:brightness-150 focus:outline-none
-        active:shadow-inner active:shadow-black active:scale-90
-    `;
     cancelBtn.innerHTML = "Cancelar";
     cancelBtn.onclick = () => modal.close();
     buttonsContainer.appendChild(cancelBtn);
@@ -52,11 +43,7 @@ export function getSpeciesItem(data, updateFn) {
     name.id = `species-${data.id}-common-name`;
     nameRow.appendChild(name);
     const deleteBtn = document.createElement("button");
-    deleteBtn.className = `
-        rounded-sm px-2 duration-100 ease-in-out hover:brightness-150 bg-teal-800
-        text-orange-300 focus:brightness-150 focus:outline-none active:shadow-inner
-        active:shadow-black active:scale-90
-    `;
+    deleteBtn.className = "text-orange-300";
     deleteBtn.innerHTML = "Deletar";
     deleteBtn.onclick = () => setDeleteModal(data, updateFn);
     deleteBtn.id = `species-${data.id}-delete-btn`;

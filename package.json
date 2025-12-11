@@ -8,7 +8,7 @@
         "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
         "lint": "npx eslint .",
         "format": "npx prettier . --write",
-        "build": "npx @tailwindcss/cli -o ./build/stylesheet.css --minify"
+        "build": "npx @tailwindcss/cli -i ./src/stylesheet.css -o ./build/stylesheet.css --minify"
     },
     "repository": {
         "type": "git",
