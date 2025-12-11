@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, test } from "@jest/globals";
 import { initDom } from "./utils/init-dom.js";
 import species from "./mocks/species.js";
 
-describe("hello world", () => {
+describe("display species", () => {
     beforeEach(async () => {
         await initDom();
     });
