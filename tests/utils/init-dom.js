@@ -4,7 +4,7 @@ import species from "../mocks/species.js";
 
 export let hasCalledFetch = false;
 
-export async function initDom(failToFetch = false) {
+export async function initDom(failToFetch = false, mockedDb = species) {
     // Load index.html and removes the first two and the last lines,
     // leaving only the head and body elements.
     const data = fs.readFileSync("./index.html", { encoding: "utf8" });
@@ -29,7 +29,7 @@ export async function initDom(failToFetch = false) {
         hasCalledFetch = !failToFetch;
         return Promise.resolve({
             ok: true,
-            text: () => Promise.resolve(JSON.stringify(species)),
+            text: () => Promise.resolve(JSON.stringify(mockedDb)),
         });
     });
 

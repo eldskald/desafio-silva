@@ -45,7 +45,7 @@ export function setupAddButton() {
         biomesLabel.innerHTML = "Biomas:";
         biomesRow.appendChild(biomesLabel);
         const biomesInput = document.createElement("input");
-        biomesInput.id = "new-species-scientific-name";
+        biomesInput.id = "new-species-biomes";
         biomesInput.className = "grow";
         biomesRow.appendChild(biomesInput);
 
@@ -58,7 +58,7 @@ export function setupAddButton() {
         descriptionLabel.innerHTML = "Descrição:";
         descriptionRow.appendChild(descriptionLabel);
         const descriptionInput = document.createElement("textarea");
-        descriptionInput.id = "new-species-scientific-name";
+        descriptionInput.id = "new-species-description";
         descriptionInput.className = "grow h-16";
         descriptionRow.appendChild(descriptionInput);
 
@@ -84,7 +84,7 @@ export function setupAddButton() {
         };
         buttonsContainer.appendChild(confirmBtn);
         const cancelBtn = document.createElement("button");
-        cancelBtn.id = "cancel-delete-btn";
+        cancelBtn.id = "cancel-add-btn";
         cancelBtn.innerHTML = "Cancelar";
         cancelBtn.className = "text-stone-400";
         cancelBtn.onclick = () => modal.close();

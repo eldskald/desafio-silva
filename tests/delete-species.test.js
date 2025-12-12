@@ -5,7 +5,7 @@ import { getModal } from "../src/utils/modal.js";
 import { getDb } from "../src/api/api.js";
 import species from "./mocks/species.js";
 
-describe("delete species feature", () => {
+describe("delete species", () => {
     beforeEach(async () => {
         await initDom();
     });
