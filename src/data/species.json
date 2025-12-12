@@ -1230,7 +1230,7 @@
         "id": 176,
         "commonName": "Embiriba",
         "scientificName": "Couratari stellata",
-        "biomas": ["Amazônia"],
+        "biomes": ["Amazônia"],
         "description": "Árvore de grande porte com madeira leve, usada na fabricação de caixas e embalagens."
     },
     {
