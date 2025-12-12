@@ -1,6 +1,9 @@
 import { popupMessage } from "../utils/get-modal.js";
 
+const speciesPerPage = 40;
+
 let db = [];
+let currentPage = 1;
 
 export async function getReq() {
     const res = await fetch("src/data/species.json");
@@ -30,6 +33,26 @@ export async function putReq(data) {
     });
 }
 
+export async function changePageReq(newPage) {
+    if (newPage <= 0) currentPage = 1;
+    else if (newPage > getPagesTotal()) currentPage = getPagesTotal();
+    else currentPage = newPage;
+}
+
 export function getDb() {
-    return db;
+    const page = db.slice(
+        (currentPage - 1) * speciesPerPage,
+        Math.min(currentPage * speciesPerPage, db.length),
+    );
+    return page;
+}
+
+export function getPagesTotal() {
+    return (
+        db.length / speciesPerPage + (db.length % speciesPerPage > 0 ? 1 : 0)
+    );
+}
+
+export function getCurrentPage() {
+    return currentPage;
 }

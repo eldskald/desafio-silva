@@ -6,7 +6,7 @@
 
 @layer base {
     button {
-        @apply rounded-sm px-2 duration-100 ease-in-out hover:brightness-150 bg-teal-800 text-stone-300 focus:brightness-150 focus:outline-none active:shadow-inner active:shadow-black active:scale-90;
+        @apply rounded-sm px-2 duration-100 ease-in-out hover:brightness-150 bg-teal-800 text-stone-300 shadow-black focus:brightness-150 focus:outline-none active:shadow-inner active:scale-90 disabled:shadow-inner disabled:scale-90;
     }
 
     input {
