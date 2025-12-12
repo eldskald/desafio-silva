@@ -1,7 +1,7 @@
-import { deleteReq } from "../api/api.js";
+import { getDb, deleteReq } from "../api/api.js";
 import { getModal } from "../utils/get-modal.js";
 
-function setDeleteModal(data, updateFn) {
+function setDeleteModal(data) {
     const modal = getModal();
     modal.innerHTML = `Deletar ${data.commonName}?`;
 
@@ -16,7 +16,7 @@ function setDeleteModal(data, updateFn) {
     confirmBtn.onclick = async () => {
         await deleteReq(data.id);
         modal.close();
-        updateFn();
+        updateSpeciesList();
     };
     buttonsContainer.appendChild(confirmBtn);
     const cancelBtn = document.createElement("button");
@@ -28,7 +28,7 @@ function setDeleteModal(data, updateFn) {
     modal.showModal();
 }
 
-export function getSpeciesItem(data, updateFn) {
+export function getSpeciesItem(data) {
     const container = document.createElement("div");
     container.id = data.id;
     container.className = "max-w-full lg:max-w-5xl flex flex-col gap-2";
@@ -45,7 +45,7 @@ export function getSpeciesItem(data, updateFn) {
     const deleteBtn = document.createElement("button");
     deleteBtn.className = "text-orange-300";
     deleteBtn.innerHTML = "Deletar";
-    deleteBtn.onclick = () => setDeleteModal(data, updateFn);
+    deleteBtn.onclick = () => setDeleteModal(data);
     deleteBtn.id = `species-${data.id}-delete-btn`;
     nameRow.appendChild(deleteBtn);
 
@@ -92,4 +92,12 @@ export function getSpeciesItem(data, updateFn) {
     descriptionContainer.appendChild(descriptionContent);
 
     return container;
+}
+
+export function updateSpeciesList() {
+    const container = document.getElementById("species-container");
+    container.innerHTML = "";
+    getDb().forEach((species) =>
+        container.appendChild(getSpeciesItem(species)),
+    );
 }
