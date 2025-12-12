@@ -1,11 +1,11 @@
-import { getModal } from "../utils/get-modal.js";
+import { getModal, popupMessage } from "../utils/modal.js";
 import { putReq } from "../api/api.js";
 import { updateSpeciesList } from "./species-item.js";
+import { updatePages } from "./pages.js";
 
 export function setupAddButton() {
     const modal = getModal();
     const btn = document.getElementById("add-btn");
-    const speciesContainer = document.getElementById("species-container");
 
     btn.onclick = () => {
         modal.innerHTML = "Adicionar nova espécie";
@@ -79,7 +79,8 @@ export function setupAddButton() {
             });
             modal.close();
             updateSpeciesList();
-            speciesContainer.scrollTop = speciesContainer.scrollHeight;
+            updatePages();
+            popupMessage("Espécie criada com sucesso.");
         };
         buttonsContainer.appendChild(confirmBtn);
         const cancelBtn = document.createElement("button");

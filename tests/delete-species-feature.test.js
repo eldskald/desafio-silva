@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, test } from "@jest/globals";
 import { initDom } from "./utils/init-dom.js";
 import { sleep } from "./utils/sleep.js";
-import { getModal } from "../src/utils/get-modal.js";
+import { getModal } from "../src/utils/modal.js";
 import { getDb } from "../src/api/api.js";
 import species from "./mocks/species.js";
 

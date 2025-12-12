@@ -1,4 +1,4 @@
-import { popupMessage } from "../utils/get-modal.js";
+import { popupMessage } from "../utils/modal.js";
 
 const speciesPerPage = 40;
 

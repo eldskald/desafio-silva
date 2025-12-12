@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, test } from "@jest/globals";
 import { initDom } from "./utils/init-dom.js";
-import { getModal } from "../src/utils/get-modal.js";
+import { getModal } from "../src/utils/modal.js";
 
 describe("display error on fail to fetch", () => {
     beforeEach(async () => {

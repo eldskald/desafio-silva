@@ -1,5 +1,5 @@
 import { getDb, deleteReq } from "../api/api.js";
-import { getModal } from "../utils/get-modal.js";
+import { getModal } from "../utils/modal.js";
 
 function setDeleteModal(data) {
     const modal = getModal();
@@ -44,7 +44,7 @@ export function getSpeciesItem(data) {
     nameRow.appendChild(name);
     const deleteBtn = document.createElement("button");
     deleteBtn.className = "text-orange-300";
-    deleteBtn.innerHTML = "Deletar";
+    deleteBtn.innerHTML = "❌";
     deleteBtn.onclick = () => setDeleteModal(data);
     deleteBtn.id = `species-${data.id}-delete-btn`;
     nameRow.appendChild(deleteBtn);
