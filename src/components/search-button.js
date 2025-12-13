@@ -1,13 +1,14 @@
-import { getModal, popupMessage } from "../utils/modal.js";
-import { postReq } from "../api/api.js";
+import { changePageReq, getSearchData, searchReq } from "../api/api.js";
+import { getModal } from "../utils/modal.js";
 import { updateSpeciesList, updatePages } from "./species-item.js";
 
-export function setupAddButton() {
+export function setupSearchButton() {
     const modal = getModal();
-    const btn = document.getElementById("add-btn");
+    const btn = document.getElementById("search-btn");
 
     btn.onclick = () => {
-        modal.innerHTML = "Adicionar nova espécie.";
+        modal.innerHTML = "Filtrar resultados.";
+        const search = getSearchData();
 
         // Common name
         const commonNameRow = document.createElement("div");
@@ -18,8 +19,9 @@ export function setupAddButton() {
         commonNameLabel.innerHTML = "Nome comum:";
         commonNameRow.appendChild(commonNameLabel);
         const commonNameInput = document.createElement("input");
-        commonNameInput.id = "new-species-common-name";
+        commonNameInput.id = "search-common-name";
         commonNameInput.className = "grow";
+        commonNameInput.value = search.commonName;
         commonNameRow.appendChild(commonNameInput);
 
         // Scientific name
@@ -31,8 +33,9 @@ export function setupAddButton() {
         scientificNameLabel.innerHTML = "Nome científico:";
         scientificNameRow.appendChild(scientificNameLabel);
         const scientificNameInput = document.createElement("input");
-        scientificNameInput.id = "new-species-scientific-name";
+        scientificNameInput.id = "search-scientific-name";
         scientificNameInput.className = "grow";
+        scientificNameInput.value = search.scientificName;
         scientificNameRow.appendChild(scientificNameInput);
 
         // Biomes
@@ -44,22 +47,10 @@ export function setupAddButton() {
         biomesLabel.innerHTML = "Biomas:";
         biomesRow.appendChild(biomesLabel);
         const biomesInput = document.createElement("input");
-        biomesInput.id = "new-species-biomes";
+        biomesInput.id = "search-biomes";
         biomesInput.className = "grow";
+        biomesInput.value = search.biomes.join(", ");
         biomesRow.appendChild(biomesInput);
-
-        // Description
-        const descriptionRow = document.createElement("div");
-        descriptionRow.className = "w-full flex flex-row gap-4 mt-2";
-        modal.appendChild(descriptionRow);
-        const descriptionLabel = document.createElement("p");
-        descriptionLabel.className = "text-stone-300 mt-1";
-        descriptionLabel.innerHTML = "Descrição:";
-        descriptionRow.appendChild(descriptionLabel);
-        const descriptionInput = document.createElement("textarea");
-        descriptionInput.id = "new-species-description";
-        descriptionInput.className = "grow h-16";
-        descriptionRow.appendChild(descriptionInput);
 
         // Buttons
         const buttonsContainer = document.createElement("div");
@@ -67,23 +58,37 @@ export function setupAddButton() {
             "w-full flex flex-row justify-between mt-4 gap-4";
         modal.appendChild(buttonsContainer);
         const confirmBtn = document.createElement("button");
-        confirmBtn.id = "confirm-add-btn";
+        confirmBtn.id = "search-confirm-btn";
         confirmBtn.innerHTML = "Confirmar";
         confirmBtn.onclick = async () => {
-            await postReq({
+            await searchReq({
                 commonName: commonNameInput.value,
                 scientificName: scientificNameInput.value,
                 biomes: biomesInput.value,
-                description: descriptionInput.value,
             });
             modal.close();
-            updateSpeciesList();
+            changePageReq(0);
             updatePages();
-            popupMessage("Espécie criada com sucesso.");
+            updateSpeciesList();
         };
         buttonsContainer.appendChild(confirmBtn);
+        const clearBtn = document.createElement("button");
+        clearBtn.id = "search-clear-btn";
+        clearBtn.innerHTML = "Resetar";
+        clearBtn.onclick = async () => {
+            await searchReq({
+                commonName: "",
+                scientificName: "",
+                biomes: "",
+            });
+            modal.close();
+            changePageReq(0);
+            updatePages();
+            updateSpeciesList();
+        };
+        buttonsContainer.appendChild(clearBtn);
         const cancelBtn = document.createElement("button");
-        cancelBtn.id = "cancel-add-btn";
+        cancelBtn.id = "search-cancel-btn";
         cancelBtn.innerHTML = "Cancelar";
         cancelBtn.className = "text-stone-400";
         cancelBtn.onclick = () => modal.close();
